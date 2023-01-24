@@ -56,3 +56,137 @@ class MyComponent extends React.Component {
     }
   }
 }
+// Counter Code Made In React:
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    // Change code below this line
+this.increment = this.increment.bind(this);
+this.decrement = this.decrement.bind(this);
+this.reset = this.reset.bind(this);
+    // Change code above this line
+  }
+  // Change code below this line
+increment()
+{
+  this.setState(value => ({
+    count : value.count+=1
+  }))
+
+}
+
+decrement()
+{
+  this.setState(state => ({
+    count: state.count-=1
+  }))
+
+}
+
+reset()
+{
+  this.setState({
+    count: 0
+  })
+}
+  // Change code above this line
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>
+        <button className='dec' onClick={this.decrement}>Decrement!</button>
+        <button className='reset' onClick={this.reset}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    );
+  }
+};
+
+//   * Pass a Callback as Props *
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+        { /* Change code below this line */ }
+        <GetInput input={this.state.inputValue} handleChange={this.handleChange} />
+        <RenderInput input={this.state.inputValue} />
+
+        { /* Change code above this line */ }
+       </div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+//   * props + Ternary Operation *
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <h1>
+      {this.props.fiftyFifty ? "You Win!" : "You Lose!"}
+      </h1>
+    )
+  };
+};
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({
+      counter: this.state.counter + 1 // change code here
+    });
+  }
+  render() {
+    const expression = Math.random() >= 0.5 ? true : false
+    return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        { /* change code below this line */ }
+        <Results fiftyFifty={expression} />
+        { /* change code above this line */ }
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+};
+
+
